@@ -25,7 +25,6 @@ void create_files (void)// нужно сздать файлы через цик�
     //FILE *f1, *f2, *f3;
     int  i = 0, j=1, n;
     scanf("%d", &n);
-    int k=97;
     char y[] = "a.dat";
     FILE* f;
     for(i; i<n; i++){

@@ -168,6 +168,40 @@ for (int i = 7; i >= 0; --i) cout << ((c >> i) & 1);
         https://prog-cpp.ru/c-directives/
        
        
+       
+ЛЕКЦИИ
+
+4) ПУЗЫРЕК(20) https://cmp.phys.msu.ru/sites/default/files/Informatics-2015.pdf
+  
+
+5) QUICKSORT(22) https://cmp.phys.msu.ru/sites/default/files/Informatics-2015.pdf
+  СЛИЯНИЕ https://prog-cpp.ru/sort-merge/
+
+6) ПОСЛЕДОВАТЕЛЬНЫЙ ПОИСК https://prog-cpp.ru/search-serial/
+   БИНАРНЫЙ ПОИСК https://prog-cpp.ru/search-binary/
+   
+7) http://www.mkurnosov.net/teaching/uploads/DSA/dsa-spring2015-lec6.pdf
+
+8) https://prog-cpp.ru/data-struct/
+    ! 43 https://cmp.phys.msu.ru/sites/default/files/Informatics-2015.pdf
+
+9) https://prog-cpp.ru/data-tree/
+    ! 48 https://cmp.phys.msu.ru/sites/default/files/Informatics-2015.pdf
+    
+10) https://prog-cpp.ru/mnk/
+
+11) https://prog-cpp.ru/digital-find/
+    ! https://cmp.phys.msu.ru/sites/default/files/Informatics-2015.pdf
+
+12) 1 ПОРЯДОК http://aco.ifmo.ru/el_books/numerical_methods/lectures/glava1.html
+      
+
+13) ТРАПЕЦИИ https://prog-cpp.ru/integral-trapecia/
+    ! https://cmp.phys.msu.ru/sites/default/files/Informatics-2015.pdf
+
+14) ! https://cmp.phys.msu.ru/sites/default/files/Informatics-2015.pdf
+
+15) 
                             
   
   

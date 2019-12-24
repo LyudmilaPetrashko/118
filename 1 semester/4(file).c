@@ -4,7 +4,7 @@
 
 void print_file (FILE *f)
 {
-    char a;
+    int a;
     a = fgetc(f);
 
     while (a != EOF) //NULL
@@ -20,14 +20,14 @@ void print_file (FILE *f)
 }
 
 
-void create_files (void)// нужно сздать файлы через цикл и проверить их на открытие
+void create_files (void)// нужно создать файлы через цикл и проверить их на открытие
 {
     //FILE *f1, *f2, *f3;
     int  i = 0, j=1, n;
     scanf("%d", &n);
     char y[] = "a.dat";
     FILE* f;
-    for(i; i<n; i++){
+    for(i = 0; i<n; i++){
     //f1 = fopen ("a.dat","w");
     //f2 = fopen ("b.dat","w");
     //f3 = fopen ("c.dat","w");
@@ -54,7 +54,7 @@ void create_files (void)// нужно сздать файлы через цик�
 
 void analyze_file ( FILE *file_name)
 {
-    char l;
+    int l;
     int a = 0, Enter=0;
     l = getc(file_name);
     while (l != EOF)

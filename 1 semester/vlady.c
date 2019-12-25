@@ -82,10 +82,11 @@ void analyze_file (const char *file_name)
 
 int main()
 {
-//    FILE *f;
-//    f = fopen("file.txt", "r");
+    FILE *f;
+    f = fopen("a.dat", "r");
     create_files();
     analyze_file ("a.dat");
+    print_file (f);
 //    printf("\n");
     return 0;
 }

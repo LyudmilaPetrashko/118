@@ -1,92 +1,111 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <malloc.h>
+#include <math.h>
 
-void print_file (FILE *f)
+typedef struct _node {
+	int a;
+	struct _node *next;
+} node;
+
+node *create_list (void)
 {
+    node *head, *p, *q;
     int a;
-    a = fgetc(f);
+    printf("a=");
+    scanf("%d", &a);
+    head=malloc(sizeof(node));
+    p=malloc(sizeof( node));
+    p->a=a;
+    head=p;
+    int i;
 
-    while (a != EOF)
-    {
-        if (a == 'a')
-          { printf("?"); }
-        else
-          { printf("%c", a);}
-        a = fgetc(f);
+    while(a!=0){
+        q=p;
+        printf("a=");
+        scanf("%d", &a);
+        p->next=malloc(sizeof(node));
+        p->next->a=a;
+        p=p->next;
     }
-    printf("\n");
+    q->next=NULL;
+    return head;
+}
 
+node * creat_list_rand(void){
+
+    printf("\n\n");
+    node *a, *b, *root;
+    int r;
+
+    a =  malloc (sizeof(node));
+    r=rand()%11-5;
+    printf("r=%d\n",r);
+    while(r%2==0) {
+            r=rand()%11-5;
+            printf("r=%d\n",r);
+    }
+
+    if(r==0) return NULL;
+
+    a->a=r;
+    root=a;
+
+    r=rand()%11-5;
+    printf("r=%d\n",r);
+    while(r!=0){
+        if(r%2==1){
+            a=a->next;
+            a=malloc(sizeof(node));
+            a->a=r;
+        }
+        r=rand()%11-5;
+        printf("r=%d\n",r);
+    }
+
+    a->next=NULL;
+
+	return root;
+}
+
+void print_list (node *root)
+{
+	printf("\n\nList:\n");
+	int i = 1;
+
+	while (root != NULL)
+	{
+	 printf("#%d: %d\n", i, root -> a);
+	 root = root -> next;
+	 i++;
+	}
+}
+
+void delete_list (node *root)
+{
+	int i = 0;
+	node *a;
+
+	do
+	{
+	 a = root -> next;
+	 free (root);
+	 root = a;
+	 i++;
+	} while (a!= NULL);
+
+	printf("List with %d element(s) was deleted.\n", i - 1);
 }
 
 
-void create_files (void)
+
+int main(void)
 {
-    int  i = 0, j=1, n;
-    printf ("Number of files: ");
-    scanf("%d", &n);
-    char y[] = "a.dat";
-    FILE* f;
-    for(i = 0; i<n; i++){
-        j=1;
-        f=fopen( y , "w");
-        if(f!=NULL){
-            while (j < 6)
-            {
-                fprintf (f,"Record %d in file \"%s\"\n", j, y);
-                j++;
-            }
-            }
-            else printf("error");
-        fclose(f);
-        y [0]++;
-    }
-}
+	node *root = create_list();
+	print_list (root);
+	delete_list (root);
 
 
-void analyze_file (const char *file_name)
-/*{
-    int l;
-    int a = 0, Enter=0;
-    while (l=getc(file_name) != EOF)
-    {
-        if(l == 'a')
-            { a++; }
-        else if ( l == '\n')
-            { Enter++;}
-       printf("%c",getc(file_name));
-
-    }
-    printf("\n a = %d\n", a);
-    printf(" \n = %d\n", Enter);
-}*/
-{
-    int l;
-    int a = 0, Enter=0;
-    FILE *f=fopen(file_name, "r");
-    l = getc(f);
-    while (l != EOF)
-    {
-        if(l == 'a')
-            { a++; }
-        else if ( l == '\n')
-            { Enter++;}
-       printf("%c",l);
-        l = getc(f);
-    }
-    printf("\n a = %d\n", a);
-    printf(" /n = %d\n", Enter);
-}
-
-
-
-int main()
-{
-    FILE *f;
-    f = fopen("a.dat", "r");
-    create_files();
-    analyze_file ("a.dat");
-    print_file (f);
-//    printf("\n");
-    return 0;
+	node *l=creat_list_rand();
+	print_list (l);
+	return 0;
 }

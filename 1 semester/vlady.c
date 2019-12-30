@@ -8,7 +8,7 @@ typedef struct _node {
 
 node *create_list (void)
 {
-	node *storage, *b, *a, *root;
+	node *storage, *b, *root;
 	int i = 1, c;
 
 	 storage =  malloc (sizeof(node));
@@ -25,12 +25,15 @@ node *create_list (void)
 
 	{
 	 i++;
+	 printf("element #%d:", i);
+	 scanf("%d", &c);
+	 if(c==0) break;
 	 b = malloc (sizeof(node));
 	 if  (b != NULL)
      {
-     a=storage;
-	 printf("element #%d:", i);
-	 scanf("%d", &c);
+     //a=storage;
+	 //printf("element #%d:", i);
+	 //scanf("%d", &c);
 	 //if(c==0) break;
 	 b -> a = c;
 	 b -> next = NULL;
@@ -40,7 +43,7 @@ node *create_list (void)
      }
      else printf ("No memory allocated");
 	}
-	a->next=NULL;
+	//a->next=NULL;
      } else printf ("No memory allocated");
 	printf("List with %d element(s) was created.\n", i - 1);
 	return root;

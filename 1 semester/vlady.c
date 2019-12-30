@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 typedef struct _node {
 	int a;
@@ -9,70 +8,50 @@ typedef struct _node {
 
 node *create_list (void)
 {
-    node *head, *p, *q;
-    int a;
-    printf("a=");
-    scanf("%d", &a);
-    head=malloc(sizeof(node));
-    p=malloc(sizeof( node));
-    p->a=a;
-    head=p;
-    int i;
+	node *storage, *b, *a, *root;
+	int i = 1, c;
 
-    while(a!=0){
-        q=p;
-        printf("a=");
-        scanf("%d", &a);
-        p->next=malloc(sizeof(node));
-        p->next->a=a;
-        p=p->next;
-    }
-    q->next=NULL;
-    return head;
-}
+	 storage =  malloc (sizeof(node));
+	 if (storage != NULL)
+     {
+	 printf("element #%d:", i);
+	 scanf ("%d", &c);
 
-node * creat_list_rand(void){
+	 storage -> a = c;
+	 storage -> next = NULL;
+	 root = storage;
 
-    printf("\n\n");
-    node *a, *b, *root;
-    int r;
+	while (c != 0)
 
-    a =  malloc (sizeof(node));
-    r=rand()%11-5;
-    printf("r=%d\n",r);
-    while(r%2==0) {
-            r=rand()%11-5;
-            printf("r=%d\n",r);
-    }
+	{
+	 i++;
+	 b = malloc (sizeof(node));
+	 if  (b != NULL)
+     {
+     a=storage;
+	 printf("element #%d:", i);
+	 scanf("%d", &c);
+	 //if(c==0) break;
+	 b -> a = c;
+	 b -> next = NULL;
 
-    if(r==0) return NULL;
-
-    a->a=r;
-    root=a;
-
-    r=rand()%11-5;
-    printf("r=%d\n",r);
-    while(r!=0){
-        if(r%2==1){
-            a=a->next;
-            a=malloc(sizeof(node));
-            a->a=r;
-        }
-        r=rand()%11-5;
-        printf("r=%d\n",r);
-    }
-
-    a->next=NULL;
-
+	 storage->next=b;
+	 storage=b;
+     }
+     else printf ("No memory allocated");
+	}
+	a->next=NULL;
+     } else printf ("No memory allocated");
+	printf("List with %d element(s) was created.\n", i - 1);
 	return root;
 }
 
 void print_list (node *root)
 {
-	printf("\n\nList:\n");
+	printf("List:\n");
 	int i = 1;
 
-	while (root != NULL)
+	while (root  != NULL)
 	{
 	 printf("#%d: %d\n", i, root -> a);
 	 root = root -> next;
@@ -91,21 +70,15 @@ void delete_list (node *root)
 	 free (root);
 	 root = a;
 	 i++;
-	} while (a!= NULL);
+	} while (a != NULL);
 
-	printf("List with %d element(s) was deleted.\n", i - 1);
+	printf("List with %d element(s) was deleted.\n", i );
 }
-
-
 
 int main(void)
 {
 	node *root = create_list();
 	print_list (root);
 	delete_list (root);
-
-
-	node *l=creat_list_rand();
-	print_list (l);
 	return 0;
 }

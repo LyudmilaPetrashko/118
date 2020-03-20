@@ -1,6 +1,4 @@
 #include <iostream>
-#include <string>
-#include<sstream>
 
 using namespace std;
 
@@ -27,7 +25,6 @@ int main()
         cout<<"vvedite "<<num-i+1<<" stroky:"<<endl;
         i--;
         cin.getline(arr[i].str, 256);
-        //cin>>noskipws>>arr[i].str;
         cout<<endl;
     }
 
@@ -37,7 +34,7 @@ int main()
         i++;
     }
 
-    delete(arr);
+    delete [] arr;
 
     return 0;
 }

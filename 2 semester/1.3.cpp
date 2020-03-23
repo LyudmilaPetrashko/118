@@ -15,10 +15,11 @@ int main()
     cout<<"vvedite num"<< endl;
     cin>>num;
     cout<<endl;
-
+    
+    cin.get();
+    
     recs *arr = new recs[num];
 
-    cin.getline(arr[0].str, 256);
 
     int i = num;
     while(i!=0){

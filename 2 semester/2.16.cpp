@@ -16,12 +16,9 @@ class ok{
     }
     
     ok(){
-        cout<<"enter x:";
-        cin>>x;
-        cout<<"enter y:";
-        cin>>y;
-        cout<<"enter r:";
-        cin>>r;
+        x=0;
+        y=0;
+        r=1;
     }
     
     ok(const ok &other){
@@ -41,20 +38,20 @@ class ok{
         return 2*M_PI*r;
     }
 
-    ok move(double dx, double dy){
+    ok& move(double dx, double dy){
         x+=dx;
         y+=dy;
         return *this;
     }
     
     
-    ok change_xy(double x0, double y0){
+    ok& change_xy(double x0, double y0){
         x=x0;
         y=y0;
         return *this;
     }
     
-    ok change_r(double r0){
+    ok& change_r(double r0){
         r=r0;
         return *this;
     }
@@ -70,21 +67,23 @@ class ok{
         return *this;
     }
     
-    ok operator *(double z){
-        r*=z;
-        return *this;
+    ok operator *(double z) const{
+        ok l;
+        l.r=r*z;
+        l.x=x;
+        l.y=y;
+        return l;
     }
     
-    bool operator==(const ok& oke ){
+    bool operator==(const ok& oke ) const{
 	    return ((x==oke.x)&&(y==oke.y)&&(r==oke.r));
     }
     
-    bool operator!=(const ok& okey ){
+    bool operator!=(const ok& okey ) const{
 	    return ((x!=okey.x)||(y!=okey.y)||(r!=okey.r));
     }
     
-    friend ostream &operator<<( ostream &output, const ok &k )
-      { 
+    friend ostream &operator<<( ostream &output, const ok &k ){ 
          output << "x=" << k.x << "  y=" << k.y<< "  r=" << k.r;
          return output;            
       }
@@ -126,6 +125,8 @@ int main()
     cout<<endl<<"i_!=: "<<i;
     
     cout<<endl<<endl<<"p1_<<: "<<endl<<p1;
+    
+    
     return 0;
     
     

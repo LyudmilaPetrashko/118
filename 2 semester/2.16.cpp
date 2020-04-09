@@ -34,7 +34,7 @@ class ok{
         return *this;
     }
     
-    double length(){
+    double length() const{
         return 2*M_PI*r;
     }
 
@@ -57,7 +57,7 @@ class ok{
     }
     
 
-    void show(){
+    void show() const{
         cout<<endl<<"x="<<x<<"  y="<<y<<"  r="<<r<<endl<<endl;
     }
     
@@ -68,11 +68,14 @@ class ok{
     }
     
     ok operator *(double z) const{
-        ok l;
-        l.r=r*z;
-        l.x=x;
-        l.y=y;
-        return l;
+         ok l (*this);
+         l *= z;
+         return l;
+     }
+     
+    friend ok operator*(double a, const ok& m){
+        ok n=m;
+        return n*=a;
     }
     
     bool operator==(const ok& oke ) const{
@@ -80,7 +83,15 @@ class ok{
     }
     
     bool operator!=(const ok& okey ) const{
-	    return ((x!=okey.x)||(y!=okey.y)||(r!=okey.r));
+	    return  !((*this)==(okey));
+    }
+    
+    void print_xy() const{
+        cout<<endl<<endl<<"x="<<x<<"  y="<<y<<endl;
+    }
+    
+    void print_r() const{
+        cout<<endl<<"r="<<r<<endl;
     }
     
     friend ostream &operator<<( ostream &output, const ok &k ){ 
@@ -116,6 +127,8 @@ int main()
     cout<<endl<<"p1_*=: ";    p1.show();
     p1=p1*0.2;
     cout<<endl<<"p1_*: ";    p1.show();
+    p1=10*p1;
+    cout<<endl<<"p1_*: ";    p1.show();
     
     bool i;
     i=(p1==p2);
@@ -125,6 +138,9 @@ int main()
     cout<<endl<<"i_!=: "<<i;
     
     cout<<endl<<endl<<"p1_<<: "<<endl<<p1;
+    
+    p1.print_xy();
+    p1.print_r();
     
     
     return 0;

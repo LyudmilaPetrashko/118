@@ -86,13 +86,18 @@ class ok{
 	    return  !((*this)==(okey));
     }
     
-    void print_xy() const{
-        cout<<endl<<endl<<"x="<<x<<"  y="<<y<<endl;
+    double get_x() const{
+        return x;
     }
     
-    void print_r() const{
-        cout<<endl<<"r="<<r<<endl;
+    double get_y() const{
+        return y;
     }
+    
+    double get_r() const{
+        return r;
+    }
+    
     
     friend ostream &operator<<( ostream &output, const ok &k ){ 
          output << "x=" << k.x << "  y=" << k.y<< "  r=" << k.r;
@@ -139,8 +144,7 @@ int main()
     
     cout<<endl<<endl<<"p1_<<: "<<endl<<p1;
     
-    p1.print_xy();
-    p1.print_r();
+    cout<<endl<<endl<<"x="<<p1.get_x()<<"  y="<<p1.get_y()<<"  r="<<p1.get_r();
     
     
     return 0;

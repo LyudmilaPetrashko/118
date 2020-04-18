@@ -111,8 +111,7 @@ class sf{
 
 
     ok okr;
-    double d;//для конструктора без параметров
-    double *z=&d;
+    double *z;
 
     public:
 
@@ -120,6 +119,7 @@ class sf{
         okr.x=x1;
         okr.y=y1;
         okr.r=r1;
+        z=new double();
         *z=z1;
     }
 
@@ -127,12 +127,14 @@ class sf{
         okr.x=0;
         okr.y=0;
         okr.r=1;
+        z=new double();
         *z=0;
 
     }
 
     sf(const sf &other){
         okr=other.okr;
+        z=new double();
         *z=*other.z;
     }
 
@@ -213,7 +215,7 @@ class sf{
       }
 
     ~sf(){
-        //delete z;
+        delete z;
         cout<<endl<<"desructor";
     }
 };
@@ -250,6 +252,5 @@ int main(){
   f=(s1!=s2);
   cout<<endl<<"s1!=s2?: "<<f<<endl;
 
-  cout<<endl;
   return 0;
 }

@@ -6,10 +6,12 @@ using namespace std;
 
 class ok{
 
-   public:
-
     double x, y, r;
 
+    public:
+    
+    ok(){}
+    
 
     ok( double x1, double y1, double r1){
         x=x1;
@@ -17,12 +19,7 @@ class ok{
         r=r1;
     }
 
-    ok(){
-        x=0;
-        y=0;
-        r=1;
-    }
-
+    
     ok(const ok &other){
         x=other.x;
         y=other.y;
@@ -109,24 +106,19 @@ class ok{
 
 class sf{
 
-
     ok okr;
     double *z;
 
     public:
 
-    sf (double x1, double y1, double z1, double r1){
-        okr.x=x1;
-        okr.y=y1;
-        okr.r=r1;
+     sf (double x1, double y1, double z1, double r1){
+        okr=ok(x1,y1,r1); 
         z=new double();
         *z=z1;
     }
 
     sf(){
-        okr.x=0;
-        okr.y=0;
-        okr.r=1;
+        okr=ok(0,0,1);
         z=new double();
         *z=0;
 
@@ -145,7 +137,7 @@ class sf{
     }
 
     double area() const{
-        return 4*M_PI*okr.r*okr.r;
+        return okr.length()*okr.length()/M_PI;
     }
 
     sf& move_sf(double dx, double dy, double dz){
@@ -162,14 +154,14 @@ class sf{
     }
 
     sf& change_r(double r0){
-        okr.r=r0;
+        okr.change_r(r0);
         return *this;
     }
 
 
 
     sf& operator *=(double dr){
-        okr.r*=dr;
+        okr*=dr;
         return *this;
     }
 
@@ -193,11 +185,11 @@ class sf{
     }
 
     double get_x() const{
-        return okr.x;
+        return okr.get_x();
     }
 
     double get_y() const{
-        return okr.y;
+        return okr.get_y();
     }
 
     double get_z() const{
@@ -205,12 +197,13 @@ class sf{
     }
 
     double get_r() const{
-        return okr.r;
+        return okr.get_r();
     }
 
 
     friend ostream &operator<<( ostream &output, const sf &k ){
-         output << "x=" << k.okr.x << "  y=" << k.okr.y<<"  z="<<*k.z<<"  r=" << k.okr.r;
+         cout<<k.okr;
+         output <<"  z="<<*k.z;
          return output;
       }
 

@@ -10,7 +10,11 @@ class ok{
 
     public:
     
-    ok(){}
+    ok(){
+        x=0;
+        y=0;
+        r=1;
+    }
     
 
     ok( double x1, double y1, double r1){
@@ -111,18 +115,9 @@ class sf{
 
     public:
 
-     sf (double x1, double y1, double z1, double r1){
-        okr=ok(x1,y1,r1); 
-        z=new double();
-        *z=z1;
-    }
+    sf (double x1, double y1, double z1, double r1);
 
-    sf(){
-        okr=ok(0,0,1);
-        z=new double();
-        *z=0;
-
-    }
+    sf();
 
     sf(const sf &other){
         okr=other.okr;
@@ -213,7 +208,11 @@ class sf{
     }
 };
 
-int main(){
+sf :: sf(): okr(0,0,1), z(new double(0)){}   
+
+sf :: sf (double xx , double yy , double rr, double zz ) : okr ( xx , yy, rr ) , z (new double ( zz ) ) {}
+ 
+ int main(){
 
   sf s1, s2(2,2,2,3);
 

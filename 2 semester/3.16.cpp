@@ -9,26 +9,14 @@ class ok{
     double x, y, r;
 
     public:
-    
-    ok(){
-        x=0;
-        y=0;
-        r=1;
-    }
-    
 
-    ok( double x1, double y1, double r1){
-        x=x1;
-        y=y1;
-        r=r1;
-    }
+    ok();
 
-    
-    ok(const ok &other){
-        x=other.x;
-        y=other.y;
-        r=other.r;
-    }
+
+    ok( double x1, double y1, double r1);
+
+
+    ok(const ok &other);
 
     ok& operator = (const ok &st){
         x=st.x;
@@ -108,6 +96,10 @@ class ok{
       }
 };
 
+ok :: ok(): x(0), y(0), r(1){};
+ok :: ok(double xx,double yy,double rr): x(xx), y(yy), r(rr){};
+ok :: ok(const ok &other): x(other.x), y(other.y), r(other.r){};
+
 class sf{
 
     ok okr;
@@ -119,11 +111,7 @@ class sf{
 
     sf();
 
-    sf(const sf &other){
-        okr=other.okr;
-        z=new double();
-        *z=*other.z;
-    }
+    sf(const sf &other);
 
     sf& operator = (const sf &st){
         okr=st.okr;
@@ -208,10 +196,12 @@ class sf{
     }
 };
 
-sf :: sf(): okr(0,0,1), z(new double(0)){}   
+sf :: sf(const sf &other): okr(other.okr), z(new double(*other.z)){};
 
-sf :: sf (double xx , double yy , double rr, double zz ) : okr ( xx , yy, rr ) , z (new double ( zz ) ) {}
- 
+sf :: sf(): okr(0,0,1), z(new double(0)){}
+
+sf :: sf (double xx , double yy , double zz, double rr ) : okr ( xx , yy, rr ) , z (new double ( zz ) ) {}
+
  int main(){
 
   sf s1, s2(2,2,2,3);
@@ -221,7 +211,7 @@ sf :: sf (double xx , double yy , double rr, double zz ) : okr ( xx , yy, rr ) ,
   s1=s2;
   cout<<endl<<"s1(=): "<<s1<<endl;
 
-  cout<<endl<<"area="<<s1.area()<<endl;
+  cout<<endl<<endl<<"area="<<s1.area()<<endl;
 
   cout<<endl<<"s1(move): "<<s1.move_sf(1,1,1)<<endl;
 

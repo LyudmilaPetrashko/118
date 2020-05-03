@@ -19,10 +19,13 @@ class ok{
     ok(const ok &other);
 
     ok& operator = (const ok &st){
-        x=st.x;
-        y=st.y;
-        r=st.r;
-        return *this;
+        if((*this)==(st)) return *this;
+        else{
+            x=st.x;
+            y=st.y;
+            r=st.r;
+            return *this;
+        }
     }
 
     double length() const{
@@ -99,8 +102,8 @@ class ok{
         cout<<endl<<"okr: "<<*this;
     }
     
-    ~ok(){
-        cout<<endl<<"destructor 1";
+   virtual ~ok(){
+        cout<<endl<<"destructor ok";
     }
     
 };
@@ -108,6 +111,8 @@ class ok{
 ok :: ok(): x(0), y(0), r(1){};
 ok :: ok(double xx,double yy,double rr): x(xx), y(yy), r(rr){};
 ok :: ok(const ok &other): x(other.x), y(other.y), r(other.r){};
+
+
 
 class sf: public ok{
 
@@ -122,9 +127,14 @@ class sf: public ok{
     sf(const sf &other);
 
     sf& operator = (const sf &st){
-        ok::operator = ((const ok& )(st));
-        *z=*st.z;
-        return *this;
+        if((*this)==(st)){
+            return *this;
+        }
+        else{
+            ok::operator = ((const ok& )(st));
+            *z=*st.z;
+            return *this;
+        }
     }
 
     double area() const{
@@ -203,7 +213,7 @@ class sf: public ok{
 
     ~sf(){
         delete z;
-        cout<<endl<<"desructor 2";
+        cout<<endl<<"desructor sf";
     }
 };
 
@@ -247,7 +257,12 @@ sf :: sf (double xx , double yy , double zz, double rr ) : ok ( xx , yy, rr ) , 
   f=(s1!=s2);
   cout<<endl<<"s1!=s2?: "<<f<<endl;
 
-  s1.print();    
+  s1.print(); 
+  
+  ok *okr1= new sf(1,1,1,2);
+  okr1->print();
+  
+  delete okr1;
 
   return 0;
 }

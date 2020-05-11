@@ -30,38 +30,38 @@ class ok{
         return 2*M_PI*r;
     }
 
-    ok<F>& move( F dx, F dy){
+    ok<F>& move(const F &dx, const F &dy){
         x+=dx;
         y+=dy;
         return *this;
     }
     
     
-    ok<F>& change_xy( F x0, F y0){
+    ok<F>& change_xy( const F &x0, const F &y0){
         x=x0;
         y=y0;
         return *this;
     }
     
-    ok<F>& change_r( F r0){
+    ok<F>& change_r(const F &r0){
         r=r0;
         return *this;
     }
         
     
-    ok<F>& operator *=( F dz){
+    ok<F>& operator *=(const F &dz){
         r*=dz;
         return *this;
     }
     
-    ok<F> operator *( F z) const{
+    ok<F> operator *(const F &z) const{
          ok<F> l (*this);
          l *= z;
          return l;
      }
     
     template <typename X> 
-    friend ok<X> operator*( X a, const ok<X>& m){
+    friend ok<X> operator*(const X &a, const ok<X>& m){
         ok<X> n=m;
         return n*=a;
     }
@@ -156,3 +156,4 @@ int main(){
     
     return 0;
 }
+

@@ -19,12 +19,12 @@ void zadacha_koshi(double a, double b, double y0, double dx, double l){
     double k1, k2, k3, k4;
 
     ofstream ofile;
-    ofile.open ("cppstudio.txt", ios_base::out);
+    ofile.open ("cppstudio1.txt", ios_base::out);
     if(!ofile) cout<<"don't work";
 
     else{
         cout<<"ok";
-        ofile<<"x="<<x<<"\t"<<"    y="<<y_i<<"\t"<<"   y_an="<<l*x*x/2+y0<<"\t"<<endl;
+        ofile<<x<<"\t"<<y_i<<"\t"<<l*x*x/2+y0<<"\t"<<endl;
 
         for(int i=0; i<int(n); i++){
 
@@ -36,7 +36,7 @@ void zadacha_koshi(double a, double b, double y0, double dx, double l){
             y_i+=dx/6*(k1+2*k2+2*k3+k4);
             x+=dx;
 
-            ofile<<"x="<<x<<"\t"<<"    y="<<y_i<<"\t"<<"   y_an="<<l*x*x/2.+y0<<"\t"<<endl;
+            ofile<<x<<"\t"<<y_i<<"\t"<<l*x*x/2.+y0<<"\t"<<endl;
         }
 
     ofile.close();
